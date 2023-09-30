@@ -1,26 +1,23 @@
-# vgg
-A PyTorch implementation of [Very Deep Convolutional Networks For Large-Scale Image Recognition](https://arxiv.org/pdf/1409.1556.pdf)
+# vit
+A PyTorch implementation of [An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale](https://arxiv.org/abs/2010.11929)
 
 <img src="assets/logo.png">
 
  
 ### Installation
 ```
-git clone https://github.com/andregaio/vgg.git
-cd vgg
-conda create -n vgg python=3.8
-conda activate vgg
+git clone https://github.com/andregaio/vit.git
+cd vit
+conda create -n vit python=3.8
+conda activate vit
 pip install -r requirements.txt
 ```
 ### Models
-| Name       |   Accuracy  |
+| Name        |   Accuracy  |
 | :---------- |   :------:  |
-| VGG-A       |   90.368    |
-| VGG-A-LRN   |   90.813    |
-| VGG-B       |   91.604    |
-| VGG-C       |   91.822    |
-| VGG-D       |   92.247    |
-| VGG-E       |   91.901    |
+| ViTBase     |   ______    |
+| ViTLarge    |   ______    |
+| ViTHuge     |   ______    |
 
 ### Dataset
 - [CIFAR10](https://pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html)

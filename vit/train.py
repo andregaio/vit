@@ -1,10 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from models.vit_base import ViTBase
-from models.vit_large import ViTLarge
-from models.vit_huge import ViTHuge
-from models.vit_custom import ViTCustom
+from model import Model
 import wandb
 import argparse
 from data import load_dataset, compute_accuracy, CLASSES
@@ -15,8 +12,8 @@ def train(args):
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     trainloader, valloader = load_dataset(batch_size = args.batch)
-
-    model = ViTBase(image_size=(32, 32), patch_size=(4, 4), num_classes=10)
+    
+    model = Model(image_size=(32, 32), patch_size=(4, 4), num_classes=10, network = args.model)
     model.to(device=device)
 
     criterion = nn.CrossEntropyLoss()

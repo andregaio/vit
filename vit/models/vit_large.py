@@ -1,7 +1,5 @@
-import torch
 from torch import nn
 from models.modules.vit import ViT
-from utils import model_info, print_model_info
 
 
 class ViTLarge(nn.Module):
@@ -18,10 +16,5 @@ class ViTLarge(nn.Module):
               heads=16,
               mlp_dim=4096)
 
-        self.params, self.flops = model_info(self.model, torch.rand(1, 3, self.height, self.width))
-
     def forward(self, img):
         return self.model(img)
-    
-    def info(self):
-        print_model_info(self.params, self.flops)

@@ -5,14 +5,6 @@ from einops.layers.torch import Rearrange
 from models.modules.transformer import Transformer
 
 
-def _xavier_init(conv: nn.Module):
-    for layer in conv.modules():
-        if isinstance(layer, nn.Conv2d):
-            torch.nn.init.xavier_uniform_(layer.weight)
-            if layer.bias is not None:
-                torch.nn.init.constant_(layer.bias, 0.0)
-
-
 class ViT(nn.Module):
     def __init__(self, *, image_size, patch_size, num_classes, dim, depth, heads, mlp_dim, pool = 'cls', channels = 3, dim_head = 64, dropout = 0., emb_dropout = 0.):
         super().__init__()
@@ -38,7 +30,6 @@ class ViT(nn.Module):
 
         self.mlp_head = nn.Linear(dim, num_classes)
 
-        _xavier_init(self)
 
     def forward(self, img):
         x = self.to_patch_embedding(img) 
