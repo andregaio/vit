@@ -13,28 +13,28 @@ conda activate vit
 pip install -r requirements.txt
 ```
 ### Models
-| Name        |   Accuracy  |
-| :---------- |   :------:  |
-| ViTBase     |   ______    |
-| ViTLarge    |   ______    |
-| ViTHuge     |   ______    |
+| Name        |   Accuracy  |   Params[M]  |   FLOPS [G]  |
+| :---------- |   :------:  |   :------:   |   :------:   |
+| ViTBase     |   84.266    |    77.988    |     5.07     |
+| ViTLarge    |             |    277.11    |     18.015   |
+| ViTHuge     |       a|   ________   |   _________  |
 
 ### Dataset
 - [CIFAR10](https://pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html)
 
 ### Training
 ```
-python train.py --model vgg_A --dataset cifar10
+python train.py --model vit_base
 ```
 
 ### Eval
 ```
-python eval.py --model vgg_A --weights weights/checkpoint_00070.pt --dataset cifar10
+python eval.py --model vit_base --weights weights/checkpoint_00070.pt
 ```
 
 ### Inference
 ```
-python infer.py --model vgg_A --weights weights/checkpoint_00070.pt --image assets/cat.png
+python infer.py --model vit_base --weights weights/checkpoint_00070.pt --image assets/cat.png
 ```
 
 ### [Results](https://wandb.ai/andregaio/vgg)
@@ -47,14 +47,9 @@ python infer.py --model vgg_A --weights weights/checkpoint_00070.pt --image asse
 </div>
 
 ### Notes
-This implementation is not designed to be a complete replica of the original - the main differences are:
- - **Batchnorm** layers have been added prior to each activation
- - **Learning rate** modified to 10e-3
+ - This implementation is not designed to be a complete replica of the original
  - **Accuracy** has been used to evaluate classification performance
  - Has been trained on **CIFAR10**
- - Input resolution and FC layer sizes have been changed to **32x32** match dataset
+ - Input resolution has been changed to **32x32** to match dataset
  - **Automatic Mixed Precision (AMP)** training with gradient scaling and autocasting
- - **Kaiming** initialisation
- - **RGB colour shift** has not been used
- - **Dropout** set to 0.3 for all except vgg_C which was kept at 0.5
- - **Learning rate** dropped 2 times during training process
+ - Model architecture code has been borrowed from https://github.com/huggingface/pytorch-image-models

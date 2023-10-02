@@ -1,15 +1,16 @@
 import torch
 import argparse
 from tqdm import tqdm
+from model import Model
 
 from data import load_dataset, compute_accuracy, CLASSES
-from vit import VGG
+from model import Model
 
 
 def eval(args):
 
     _, valloader = load_dataset(batch_size = args.batch)
-    model = VGG(classes = CLASSES,  network = args.model)
+    model = Model(image_size=(32, 32), patch_size=(4, 4), num_classes=10, network = args.model)
     model.load_state_dict(torch.load(args.weights))
     model.cuda()
 
@@ -28,7 +29,7 @@ def eval(args):
 if __name__ == "__main__":
 
     parser = argparse.ArgumentParser("Argument parser")
-    parser.add_argument("--model", type = str, default = 'vgg_A')
+    parser.add_argument("--model", type = str, default = 'vit_base')
     parser.add_argument("--weights", type = str, default = 'weights/checkpoint_00070.pt')
     parser.add_argument("--dataset", type = str, default = 'cifar10')
     parser.add_argument("--batch", type = int, default = 64)

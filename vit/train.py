@@ -13,7 +13,10 @@ def train(args):
 
     trainloader, valloader = load_dataset(batch_size = args.batch)
     
-    model = Model(image_size=(32, 32), patch_size=(4, 4), num_classes=10, network = args.model)
+    model = Model(image_size=tuple(args.image_size),
+                  patch_size=tuple(args.patch_size),
+                  num_classes=10,
+                  network = args.model)
     model.to(device=device)
 
     criterion = nn.CrossEntropyLoss()
@@ -31,6 +34,8 @@ def train(args):
                 'network': args.model,
                 'params': model.params,
                 'flops': model.flops,
+                'img_size': 'x'.join(args.img_size),
+                'patch_size': 'x'.join(args.patch_size),
                 'dataset': args.dataset,
                 'epochs': args.epochs,
                 'batch' : args.batch,
@@ -102,6 +107,8 @@ if __name__ == "__main__":
     parser.add_argument("--dataset", type = str, default = 'cifar10')
     parser.add_argument("--batch", type = int, default = 128)
     parser.add_argument("--epochs", type = int, default = 78)
+    parser.add_argument("--image_size", nargs="+", type = int, default = [32, 32])
+    parser.add_argument("--patch_size", nargs="+", type = int, default = [4, 4])
     parser.add_argument("--learning_rate", type = float, default = 1e-4)
     parser.add_argument("--weight_decay", type = float, default = 0.1)
     parser.add_argument("--wandb", action="store_true", default = False)

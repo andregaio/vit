@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
-from vit.models.vit_base import ViTBase
-from vit.models.vit_large import ViTLarge
-from vit.models.vit_huge import ViTHuge
+from models.vit_base import ViTBase
+from models.vit_large import ViTLarge
+from models.vit_huge import ViTHuge
+from models.vit_custom import ViTCustom
 from utils import model_info, print_model_info
 
 
@@ -10,6 +11,7 @@ networks = {
     'vit_base' : ViTBase,
     'vit_large' : ViTLarge,
     'vit_huge' : ViTHuge,
+    'vit_custom' : ViTCustom,
 }
 
 
@@ -32,7 +34,7 @@ class Model(nn.Module):
                              patch_size=patch_size,
                              num_classes=num_classes)
         _xavier_init(self.network)
-        
+
         self.params, self.flops = model_info(self.network, torch.rand(1, 3, self.height, self.width))
 
     def forward(self, x):

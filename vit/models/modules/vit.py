@@ -33,7 +33,7 @@ class ViT(nn.Module):
 
     def forward(self, img):
         x = self.to_patch_embedding(img) 
-        b, n, _ = x.shape
+        b, _, _ = x.shape
 
         cls_tokens = repeat(self.cls_token, '1 1 d -> b 1 d', b = b)
         x = torch.cat((cls_tokens, x), dim=1)
@@ -47,17 +47,5 @@ class ViT(nn.Module):
         return self.mlp_head(x)
 
 
-if __name__ == "__main__":
-    
-    vit = ViT(image_size=(224, 224),
-              patch_size=(16, 16),
-              num_classes=10,
-              dim=768,
-              depth=12,
-              heads=8,
-              mlp_dim=3072)
-    image = torch.rand(1, 3, 224, 224)
-    out = vit(image)
-    print(out.shape)
 
     
