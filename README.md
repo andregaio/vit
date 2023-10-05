@@ -37,7 +37,7 @@ python eval.py --model vit_base --weights weights/checkpoint_00070.pt
 python infer.py --model vit_base --weights weights/checkpoint_00070.pt --image assets/cat.png
 ```
 
-### [Results](https://wandb.ai/andregaio/vgg)
+### [Results](https://wandb.ai/andregaio/vit)
 <div align="center">
 
 
