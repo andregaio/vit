@@ -13,11 +13,11 @@ conda activate vit
 pip install -r requirements.txt
 ```
 ### Models
-| Name        |   Accuracy  |   Params[M]  |   FLOPS [G]  |
-| :---------- |   :------:  |   :------:   |   :------:   |
-| ViTBase     |   84.266    |    77.988    |     5.07     |
-| ViTLarge    |             |    277.11    |     18.015   |
-| ViTHuge     |       a|   ________   |   _________  |
+| Name        |   Patch Size  |    Accuracy  |   Params[M]  |   GMACS      |
+| :---------- |    :------:   |   :------:   |   :------:   |   :------:   |
+| ViTBase     |        4      |    86.432    |      78      |     5.1      |
+| ViTBase     |        8      |    81.151    |      78      |     1.3      |
+| ViTLarge    |        4      |    82.198    |      277     |    18.0    |
 
 ### Dataset
 - [CIFAR10](https://pytorch.org/vision/stable/generated/torchvision.datasets.CIFAR10.html)

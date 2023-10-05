@@ -4,6 +4,7 @@ from models.vit_base import ViTBase
 from models.vit_large import ViTLarge
 from models.vit_huge import ViTHuge
 from models.vit_custom import ViTCustom
+from models.vit_npe import ViTNPE
 from utils import model_info, print_model_info
 
 
@@ -12,6 +13,7 @@ networks = {
     'vit_large' : ViTLarge,
     'vit_huge' : ViTHuge,
     'vit_custom' : ViTCustom,
+    'vit_npe' : ViTNPE,
 }
 
 
